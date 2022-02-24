@@ -126,3 +126,11 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Added this:
+# Path to uploaded csvs:
+MEDIA_URL = 'CSVs/'
+
+MEDIA_ROOT = (
+    BASE_DIR / "projectlibrary" / MEDIA_URL
+)
