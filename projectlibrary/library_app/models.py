@@ -3,8 +3,9 @@ from django.db import models
 # Create your models here.
 
 class BookInfo(models.Model):
-    title = models.TextField()
+
     goodr_id = models.TextField(default=0)
+    title = models.TextField()
     author = models.TextField()
     isbn = models.TextField()
     my_rating = models.TextField()
@@ -15,7 +16,7 @@ class BookInfo(models.Model):
     # genre = models.TextField() #Add later
     # description = models.TextField() #Add later
 
-# to upload CSV document
+# to upload and save CSV document. Inactive for now.
 class Document(models.Model):
     document = models.FileField(upload_to='user_uploads/%Y-%m-%d/') #change to CSVs/
     uploaded_at = models.DateTimeField(auto_now_add=True)

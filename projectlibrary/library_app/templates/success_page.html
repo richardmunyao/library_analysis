@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+
+<!--hero header-->
+<h1 class="heading-black text-capitalize">Success!</h1>
+<p class="lead py-3">
+
+    Successfully uploaded your CSV<br/>
+    <br/>
+    Now handling...
+    <br/>
+        <p>
+            <a href="{% url 'landing_page' %}">Return to home</a>
+        </p>
+</p>
+
+
+{% endblock %}

@@ -8,11 +8,15 @@
 <p class="lead py-3">
 
     This is a platform that helps you organize and analyze your book library<br/>
-    No Sign up Needed...
+    <br/>
+    Select your Goodreads exported CSV file and Upload.
 </p>
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
-      {{ form.as_p }}
+          <p>
+              {{ form }}
+          </p>
+      <br/>
         <button type="submit" class="btn btn-primary d-inline-flex flex-row align-items-center">
             Upload Your CSV
             <em class="ml-2" data-feather="arrow-right"></em>
