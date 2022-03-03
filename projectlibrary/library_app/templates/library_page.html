@@ -7,19 +7,19 @@
 <h2 class="heading-black text-capitalize">your book Library</h2>
 
 <!-- blah blah blah blah blah blah -->
-<p class="lead py-3">
-        <table class="table-responsive">
+
+        <table class="table-responsive" >
           <thead>
             <tr>
-                <th scope="col"> goodr_id</th>
-                <th scope="col"> title</th>
-                <th scope="col"> author</th>
-                <th scope="col"> isbn</th>
-                <th scope="col"> my_rating</th>
-                <th scope="col"> avg_rating</th>
-                <th scope="col"> pages</th>
-                <th scope="col"> date_added</th>
-                <th scope="col"> shelf</th>
+                <!-- <th scope="col"> goodr_id</th> -->
+                <th scope="col"> Title</th>
+                <th scope="col" class="text-center"> Author</th>
+                <!-- <th scope="col"> isbn</th> -->
+                <!-- <th scope="col"> my_rating</th> -->
+                <th scope="col" class="text-center"> Rating</th>
+                <!-- <th scope="col"> pages</th> -->
+                <th scope="col" class="text-center"> Added</th>
+                <th scope="col" class="text-center"> Shelf</th>
             </tr>
         </thead>
         <tbody>
@@ -27,13 +27,13 @@
         <tbody>
             {% for book in book_instance %}
             <tr>
-                <td>{{ book.goodr_id}}</td>
+                <!-- <td>{{ book.goodr_id}}</td> -->
                 <td>{{ book.title}}</td>
                 <td>{{ book.author}}</td>
-                <td>{{ book.isbn}}</td>
-                <td>{{ book.my_rating}}</td>
+                <!-- <td>{{ book.isbn}}</td> -->
+                <!-- <td>{{ book.my_rating}}</td> -->
                 <td>{{ book.avg_rating}}</td>
-                <td>{{ book.pages}}</td>
+                <!-- <td>{{ book.pages}}</td> -->
                 <td>{{ book.date_added}}</td>
                 <td>{{ book.shelf}}</td>
             </tr>
@@ -41,12 +41,30 @@
         </tbody>
 
     </table>
-</p>
-<!-- blah blah blah blah blah blah --><!-- blah blah blah blah blah blah -->
 
-<p>
+    <div class="pagination col-md-6 mx-auto text-center">
+    <span class="step-links">
+        {% if book_instance.has_previous %}
+            <a class="btn btn-info" href="?page=1">&laquo; first</a>
+            <a class="btn btn-info" href="?page={{ book_instance.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ book_instance.number }} of {{ book_instance.paginator.num_pages }}.
+        </span>
+
+        {% if book_instance.has_next %}
+            <a class="btn btn-info" href="?page={{ book_instance.next_page_number }}">next</a>
+            <a class="btn btn-info" href="?page={{ book_instance.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+<!-- blah blah blah blah blah blah --><!-- blah blah blah blah blah blah -->
+<br/>
+<!-- <h6>
     <a href="{% url 'landing_page' %}">Return to home</a>
-</p>
+</h6> -->
 
 
 

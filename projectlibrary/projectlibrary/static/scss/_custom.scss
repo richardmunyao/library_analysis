@@ -185,6 +185,14 @@ body {
     }
 }
 
+/* added this: */
+// flex box
+.flex-wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
 /*vertical heights */
 .vh-100 {
@@ -339,7 +347,7 @@ footer {
         font-size: 1rem;
         text-transform: uppercase;
     }
-    
+
 }
 
 

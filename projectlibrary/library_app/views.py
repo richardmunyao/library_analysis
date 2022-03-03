@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from library_app.models import BookInfo
 from library_app.forms import DocumentForm, UploadFileForm
+from django.core.paginator import Paginator
 
 # Non-Imaginary function to handle an uploaded file.
 from library_app.scripts.procsv import handle_uploaded_file
@@ -31,7 +32,11 @@ def success_page(request):
 def library_page(request):
     # Fill in logic to fetch data and display it in table
     book_object = BookInfo.objects.all()
+    #paginate. Too many books
+    paginator = Paginator(book_object, 25) # Show 25 contacts per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     context = {
-    "book_instance" : book_object
+    "book_instance" : page_obj
     }
     return render(request, 'library_page.html', context)
