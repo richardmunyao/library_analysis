@@ -2,19 +2,21 @@
 
 {% block page_content %}
 
+<div class="col-md-8 col-sm-10 col-12 mx-auto my-auto text-center">
+    <!--hero header-->
+    <h1 class="heading-black text-capitalize">Success!</h1>
+    <p class="lead py-3">
 
-<!--hero header-->
-<h1 class="heading-black text-capitalize">Success!</h1>
-<p class="lead py-3">
+        Successfully uploaded your CSV<br/>
+        <br/>
+        Now handling...
+        <br/>
 
-    Successfully uploaded your CSV<br/>
-    <br/>
-    Now handling...
-    <br/>
-        <p>
-            <a href="{% url 'landing_page' %}">Return to home</a>
-        </p>
-</p>
+    </p>
 
+    <p>
+        <a href="{% url 'landing_page' %}">Return to home</a>
+    </p>
+</div>
 
 {% endblock %}

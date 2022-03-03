@@ -27,3 +27,11 @@ def landing_page(request):
 
 def success_page(request):
     return render(request, 'success_page.html', {})
+
+def library_page(request):
+    # Fill in logic to fetch data and display it in table
+    book_object = BookInfo.objects.all()
+    context = {
+    "book_instance" : book_object
+    }
+    return render(request, 'library_page.html', context)

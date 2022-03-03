@@ -24,7 +24,7 @@
     <section class="smart-scroll">
         <div class="container-fluid">
             <nav class="navbar navbar-expand-md navbar-dark">
-                <a class="navbar-brand heading-black" href="index.html">
+                <a class="navbar-brand heading-black" href="{% url 'landing_page' %}">
                     Project Library
                 </a>
                 <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse"
@@ -35,7 +35,7 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link page-scroll" href="#feature1">Feature1</a>
+                            <a class="nav-link page-scroll text-primary" href="{% url 'library_page' %}">Library Page</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link page-scroll" href="#feature2">Feature2</a>
@@ -61,13 +61,13 @@
     <section class="py-7 py-md-0 bg-hero" id="home">
         <div class="container">
             <div class="row vh-md-100">
-                <div class="col-md-8 col-sm-10 col-12 mx-auto my-auto text-center">
+                <!-- <div class="col-md-8 col-sm-10 col-12 mx-auto my-auto text-center"> -->
                     {% block page_content %}
 
 
                     {% endblock %}
 
-                </div>
+                <!-- </div> -->
             </div>
         </div>
     </section>

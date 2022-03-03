@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+
+<!--hero header-->
+<h2 class="heading-black text-capitalize">your book Library</h2>
+
+<!-- blah blah blah blah blah blah -->
+<p class="lead py-3">
+        <table class="table-responsive">
+          <thead>
+            <tr>
+                <th scope="col"> goodr_id</th>
+                <th scope="col"> title</th>
+                <th scope="col"> author</th>
+                <th scope="col"> isbn</th>
+                <th scope="col"> my_rating</th>
+                <th scope="col"> avg_rating</th>
+                <th scope="col"> pages</th>
+                <th scope="col"> date_added</th>
+                <th scope="col"> shelf</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+        <tbody>
+            {% for book in book_instance %}
+            <tr>
+                <td>{{ book.goodr_id}}</td>
+                <td>{{ book.title}}</td>
+                <td>{{ book.author}}</td>
+                <td>{{ book.isbn}}</td>
+                <td>{{ book.my_rating}}</td>
+                <td>{{ book.avg_rating}}</td>
+                <td>{{ book.pages}}</td>
+                <td>{{ book.date_added}}</td>
+                <td>{{ book.shelf}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+</p>
+<!-- blah blah blah blah blah blah --><!-- blah blah blah blah blah blah -->
+
+<p>
+    <a href="{% url 'landing_page' %}">Return to home</a>
+</p>
+
+
+
+{% endblock %}

@@ -28,7 +28,7 @@ def handle_uploaded_file(f):
     #create instances of book info, make entries.
     #Surely there's a better way of doing this!
     for i in range(len(dataframe)):
-        print("TITLES I:",v_titles[i])
+        # print("TITLES I:",v_titles[i])
         i = BookInfo(
         goodr_id=v_goodr_ids[i],
         title=v_titles[i],
