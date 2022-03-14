@@ -13,6 +13,7 @@ class BookInfo(models.Model):
     pages = models.TextField()
     date_added = models.TextField()
     shelf = models.TextField()
+    subjects = models.TextField()
     # genre = models.TextField() #Add later
     # description = models.TextField() #Add later
 

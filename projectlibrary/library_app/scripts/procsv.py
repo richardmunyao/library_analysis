@@ -18,6 +18,7 @@ def handle_uploaded_file(f):
     v_pages = dataframe['Number of Pages'].values
     v_date_addeds = dataframe['Date Added'].values
     v_shelfs = dataframe['Exclusive Shelf'].values
+    v_subjects = dataframe['Subjects'].values
 
 
     for title, author in zip(v_titles,v_authors):
@@ -38,7 +39,8 @@ def handle_uploaded_file(f):
         avg_rating=v_avg_ratings[i],
         pages=v_pages[i],
         date_added=v_date_addeds[i],
-        shelf=v_shelfs[i]
+        shelf=v_shelfs[i],
+        subjects=v_subjects[i]
         )
         i.save()
 
