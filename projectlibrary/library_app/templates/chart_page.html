@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<div class="col-md-8 col-sm-10 col-12 mx-auto my-auto text-center">
+    <!--hero header-->
+    <h1 class="heading-black text-capitalize">Chart page</h1>
+    <p class="lead py-3">
+
+        Chart Page gonna be here
+    </p>
+
+    <div id="container" style="width: 75%;">
+    <canvas id="pie-chart"></canvas>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+
+    var config = {
+      type: 'pie',
+      data: {
+        datasets: [{
+          data: {{ hits|safe }},
+          // backgroundColor: [
+          //   '#696969', '#808080', '#A9A9A9', '#C0C0C0', '#D3D3D3'
+          // ],
+          label: 'Population'
+        }],
+        labels: {{ subj|safe }}
+      },
+      options: {
+        responsive: true
+      }
+    };
+
+    window.onload = function() {
+      var ctx = document.getElementById('pie-chart').getContext('2d');
+      window.myPie = new Chart(ctx, config);
+    };
+
+  </script>
+
+
+    <p>
+        <a href="{% url 'landing_page' %}">Return to home</a>
+    </p>
+</div>
+
+{% endblock %}

@@ -9,6 +9,7 @@ def handle_uploaded_file(f):
 
     # v here stands for value.
     # my goodness, this is horrible. Find a better way
+    # Check this: https://towardsdatascience.com/django-pandas-and-chart-js-for-a-quick-dashboard-e261bce38bee (data/methods.py)
     v_goodr_ids = dataframe['Book Id'].values
     v_titles = dataframe['Title'].values
     v_authors = dataframe['Author'].values

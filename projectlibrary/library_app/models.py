@@ -14,7 +14,7 @@ class BookInfo(models.Model):
     date_added = models.TextField()
     shelf = models.TextField()
     subjects = models.TextField()
-    # genre = models.TextField() #Add later
+    # genre = models.TextField() # (now called subjects)
     # description = models.TextField() #Add later
 
 # to upload and save CSV document. Inactive for now.
