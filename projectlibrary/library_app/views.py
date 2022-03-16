@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+# from django.contrib.postgres.search import SearchQuery
+from django.http import JsonResponse
 from library_app.models import BookInfo
 from library_app.forms import DocumentForm, UploadFileForm
 from django.core.paginator import Paginator
@@ -50,8 +52,8 @@ def chart_page(request):
     # all_books = BookInfo.objects.all()
     subjects_query_set = BookInfo.objects.values('subjects')
     # print(subjects_query_set)
-    for subj in subjects_query_set:
-        print(subj)
+    # for subj in subjects_query_set:
+    #     print(subj)
     # Gonna convert our query set to pandas data frame (df).
     # Because this is currently the only way I know how to proceed
     # Using logic in subject_counts.py from isbn_updater
@@ -60,11 +62,12 @@ def chart_page(request):
     df = pd.DataFrame(subjects_query_set)
     # print("DF:",df)
     print("***********************************")
+    #Splits subjects by '~' and counts occurences. Bulds key, value pair, e.g {'fantasy':3}
     df_count = df.subjects.str.get_dummies(sep="~").sum().sort_values(ascending=False)
     # drop some nonsense categories
     nonsense_categories = ['accessible book', 'protected daisy', '=', 'general', '"', 'ficción', 'nan']
     df_count = df_count.drop(nonsense_categories)
-    #show only top X categories
+    #show only top X (20) categories
     top_x = df_count.head(20)
     print(top_x)
     # convert to list so we can draw chart in js
@@ -75,5 +78,34 @@ def chart_page(request):
     "subj" : subj,
     "hits" : hits
     }
-    
+
     return render(request, 'chart_page.html', context)
+
+
+
+# Expound on clicked segment of pie chart
+def chart_expound(request):
+    if request.method == 'POST':
+        print("Method is POST")
+        if 'label' in request.POST:
+            label = request.POST['label']
+            value = request.POST['value']
+            print(label, value)
+
+            # Searching our Database for matching label
+            book_result = BookInfo.objects.filter(subjects__icontains=label).values()
+            print("Found: ",len(book_result))
+            response = {
+            "result" : 'ok',
+            "message" : f'Found {len(book_result)}',
+            "book_result": list(book_result)
+            }
+
+            return JsonResponse(response, safe=False) #False because QuerySet is not JSON serializable
+    response={
+    "result" : 'fail',
+    "message" : 'not post?'
+    }
+
+    # return HttpResponse(json.dumps(response), content_type="application/json")
+    return JsonResponse(response)

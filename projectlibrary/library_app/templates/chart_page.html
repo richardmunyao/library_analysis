@@ -7,7 +7,7 @@
     <h1 class="heading-black text-capitalize">Chart page</h1>
     <p class="lead py-3">
 
-        Chart Page gonna be here
+        Chart Page is here:
     </p>
 
     <div id="container" style="width: 75%;">
@@ -23,15 +23,24 @@
       data: {
         datasets: [{
           data: {{ hits|safe }},
+          // TO DO: Make variable backgroud color gradient based on number of books/subjects
           // backgroundColor: [
           //   '#696969', '#808080', '#A9A9A9', '#C0C0C0', '#D3D3D3'
           // ],
-          label: 'Population'
+          label: 'Subjects'
         }],
         labels: {{ subj|safe }}
       },
       options: {
-        responsive: true
+        responsive: true,
+        onClick(e, activeElem) {
+            // logic here to get labels(subj) and count (value)
+            dataIndex = activeElem[0].index;
+            label = e.chart.data.labels[dataIndex];
+            value = e.chart.data.datasets[0].data[dataIndex];
+          console.log(label, value);
+          expound(label,value);
+        }
       }
     };
 
@@ -39,6 +48,30 @@
       var ctx = document.getElementById('pie-chart').getContext('2d');
       window.myPie = new Chart(ctx, config);
     };
+
+    //function to call views.py and pass label and count:
+        function expound(label, value){
+            $.ajax({
+                type: "POST",
+                // remember: url is url name
+                url: "{% url 'chart_expound' %}",
+                data: {
+                  'label': label,
+                  'value': value,
+                  'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                dataType: "json",
+                success: function(response) {
+                  if (response.result == 'ok') {
+                    console.log(response.message);
+                    console.log(response.book_result)
+                  } else {
+                    console.log(response.message);
+
+                  }
+                }
+            });
+        }
 
   </script>
 
