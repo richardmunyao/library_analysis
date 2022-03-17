@@ -36,7 +36,7 @@ def library_page(request):
     # Fill in logic to fetch data and display it in table
     book_object = BookInfo.objects.all()
     #paginate. Too many books
-    paginator = Paginator(book_object, 25) # Show 25 contacts per page.
+    paginator = Paginator(book_object, 25) # Show 25 books per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
@@ -58,7 +58,7 @@ def chart_page(request):
     # Because this is currently the only way I know how to proceed
     # Using logic in subject_counts.py from isbn_updater
     print("***********************************")
-    pd.set_option('display.max_rows', None)
+    pd.set_option('display.max_rows', None) # don't truncate rows when I do print()
     df = pd.DataFrame(subjects_query_set)
     # print("DF:",df)
     print("***********************************")
@@ -98,7 +98,7 @@ def chart_expound(request):
             response = {
             "result" : 'ok',
             "message" : f'Found {len(book_result)}',
-            "book_result": list(book_result)
+            "book_result": list(book_result) # convert book_result to list, so that it is JSON serializable
             }
 
             return JsonResponse(response, safe=False) #False because QuerySet is not JSON serializable
